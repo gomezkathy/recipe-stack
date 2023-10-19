@@ -1,0 +1,24 @@
+{% load static %}
+<!doctype html>
+<html>
+    <head>
+        <title>Create Recipe</title>
+        <link rel="stylesheet" href="{% static 'css/recipes.css' %}">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="{% url 'recipe_list' %}">Main page</a>
+                <a href="{% url 'user_login' %}">logout</a>
+            </nav>
+        </header>
+        <main>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button>CREATE</button>
+            </form>
+        </main>
+        <footer>Made with love by Scrumptious Recipes</footer>
+    </body>
+</html>
