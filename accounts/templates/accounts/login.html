@@ -1,21 +1,34 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+    <title>Login</title>
 </head>
 <body>
-<header>
-
-</header>
-<main>
-    <h1>RecipeStack</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button>login</button>
-    </form>
-</main>
+<div class="container">
+    <div class="center">
+        <h1>RecipeStack</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="txt_field">
+                <input type="text" name="username" required>
+                <span></span>
+                <label>Username</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" name="password" required>
+                <span></span>
+                <label>Password</label>
+            </div>
+            <input type="submit" value="Login">
+            <div class="signup_link">
+                Not a Member? <a href="{% url 'signup' %}">Signup</a>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>
