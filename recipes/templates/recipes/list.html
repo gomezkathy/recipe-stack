@@ -1,23 +1,28 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scrumptious Recipes</title>
+  <title>RecipeStack</title>
   <link rel="stylesheet" href="{% static 'css/recipes.css' %}">
 </head>
 <body>
   <header>
     <nav>
-      <a href="{% url 'user_login' %}">logout</a>
+        <a href="{% url 'recipe_list' %}">Home</a>
+        <a href="{% url 'create_recipe' %}">Create Recipe</a>
+        <a href="{% url 'create_recipe' %}">Create Stack</a>
+        <a href="{% url 'user_login' %}">Logout</a>
     </nav>
   </header>
   <main>
-    <h1> HI, {{user.username }} Scrumptious Recipes</h1>
-    <h2>All the food that's fit to eat</h2>
+    <h1> Welcome back, {{user.username }}!</h1>
+    <h2>
+      <a href="{%url 'recipe_list' %}">All Recipes |</a>
+      <a href="{% url 'recipe_list' %}"> RecipeStacks</a>
+    </h2>
     <div class="recipe-grid">
         {% for recipe in recipe_list %}
         <div>
@@ -26,13 +31,12 @@
             <p>{{ recipe.created_on|date:"d M Y" }}</p>
           </h3>
           <img src="{{ recipe.picture }}">
-          <div>4.3 stars</div>
         </div>
         {% endfor %}
       </div>
   </main>
   <footer>
-    Made with love by Scrumptious Recipes
+    Made with love by RecipeStack
   </footer>
 </body>
 </html>

@@ -8,8 +8,10 @@
     <body>
         <header>
             <nav>
-                <a href="{% url 'recipe_list' %}">Main page</a>
-                <a href="{% url 'user_login' %}">logout</a>
+                <a href="{% url 'recipe_list' %}">Home</a>
+                <a href="{% url 'create_recipe' %}">Create Recipe</a>
+                <a href="{% url 'create_recipe' %}">Create Stack</a>
+                <a href="{% url 'user_login' %}">Logout</a>
             </nav>
         </header>
         <main>
@@ -19,6 +21,6 @@
                 <button>CREATE</button>
             </form>
         </main>
-        <footer>Made with love by Scrumptious Recipes</footer>
+        <footer>Made with love by RecipeStack</footer>
     </body>
 </html>
