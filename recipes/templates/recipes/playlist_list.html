@@ -24,13 +24,13 @@
       <a href="{% url 'playlist_list' %}"> RecipeStacks</a>
     </h2>
     <div class="recipe-grid">
-        {% for recipe in recipe_list %}
+        {% for playlist in playlist_list %}
         <div>
           <h3>
-            <a href="{% url 'show_recipe' recipe.id %}">{{ recipe.title }}</a>
-            <p>{{ recipe.created_on|date:"d M Y" }}</p>
+            <a href="{% url 'show_playlist' playlist.id %}">{{ playlist.title }}</a>
+            <p>{{ playlist.created_on|date:"d M Y" }}</p>
           </h3>
-          <img src="{{ recipe.picture }}">
+          <img src="{{ playlist.picture }}">
         </div>
         {% endfor %}
       </div>

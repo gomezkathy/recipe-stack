@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Recipe
+from .models import Recipe, Playlist
 from django.contrib.auth.decorators import login_required
 from .forms import RecipeForm, PlaylistForm
 from django.contrib.auth.models import User
@@ -23,6 +23,23 @@ def create_playlist(request):
 
     return render(request, "recipes/create_playlist.html", context)
 
+@login_required
+def playlist_list(request):
+    user = request.user
+    playlists = Playlist.objects.filter(created_by=user)
+    context = {
+        'playlist_list': playlists,
+    }
+    return render(request, 'recipes/playlist_list.html', context)
+
+def show_playlist(request, id):
+    playlist = get_object_or_404(Playlist, id=id)
+    context = {
+        'playlist_object': playlist,
+    }
+    return render(request, 'recipes/playlist_detail.html', context)
+
+
 
 def show_recipe(request, id):
     recipe = get_object_or_404(Recipe, id=id)
@@ -30,6 +47,7 @@ def show_recipe(request, id):
         'recipe_object': recipe,
     }
     return render(request, 'recipes/detail.html', context)
+
 
 
 @login_required
