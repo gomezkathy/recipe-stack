@@ -12,6 +12,7 @@ def create_playlist(request):
             playlist = form.save(commit=False)
             playlist.created_by = request.user
             playlist.save()
+            form.save_m2m()
             return redirect("recipe_list")
     else:
         form = PlaylistForm()
@@ -39,16 +40,12 @@ def show_playlist(request, id):
     }
     return render(request, 'recipes/playlist_detail.html', context)
 
-
-
 def show_recipe(request, id):
     recipe = get_object_or_404(Recipe, id=id)
     context = {
         'recipe_object': recipe,
     }
     return render(request, 'recipes/detail.html', context)
-
-
 
 @login_required
 def recipe_list(request):
