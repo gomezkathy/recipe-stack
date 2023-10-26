@@ -5,6 +5,40 @@ from .forms import RecipeForm, PlaylistForm
 from django.contrib.auth.models import User
 
 @login_required
+def delete_playlist(request, playlist_id):
+    playlist = get_object_or_404(Playlist, id=playlist_id)
+
+    if request.method == "POST":
+        playlist.delete()
+        return redirect('playlist_list')
+
+    context = {
+        'playlist': playlist,
+    }
+
+    return render(request, 'recipes/delete_playlist.html', context)
+
+@login_required
+def edit_playlist(request, playlist_id):
+    playlist = get_object_or_404(Playlist, id=playlist_id)
+
+    if request.method == "POST":
+        form = PlaylistForm(request.POST, instance=playlist)
+        if form.is_valid():
+            form.save()
+            return redirect("show_playlist", id=playlist_id)
+    else:
+        form = PlaylistForm(instance=playlist)
+        form.fields['recipes'].queryset = Recipe.objects.filter(created_by=request.user)
+
+    context = {
+        "playlist_object": playlist,
+        "playlist_form": form
+    }
+
+    return render(request, "recipes/edit_playlist.html", context)
+
+@login_required
 def delete_recipe(request, id):
     recipe = get_object_or_404(Recipe, id=id)
 
@@ -38,7 +72,7 @@ def edit_recipe(request, id):
 @login_required
 def show_playlist_recipes(request, playlist_id):
     playlist = Playlist.objects.get(id=playlist_id)
-    recipes = playlist.recipes.all()
+    recipes = playlist.recipes.filter(created_by=request.user)
 
     context = {
         'playlist': playlist,

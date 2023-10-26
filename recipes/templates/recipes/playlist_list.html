@@ -29,6 +29,10 @@
           <h3>
             <a href="{% url 'show_playlist_recipes' playlist.id %}">{{ playlist.title }}</a>
             <p>{{ playlist.created_on|date:"d M Y" }}</p>
+            <p>
+              <a href="{% url 'edit_playlist' playlist.id %}">Edit</a>
+              <a href="{% url 'delete_playlist' playlist.id %}" class="delete-link">Delete</a>
+            </p>
           </h3>
           <img src="{{ playlist.picture }}">
         </div>
