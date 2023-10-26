@@ -4,7 +4,38 @@ from django.contrib.auth.decorators import login_required
 from .forms import RecipeForm, PlaylistForm
 from django.contrib.auth.models import User
 
+@login_required
+def delete_recipe(request, id):
+    recipe = get_object_or_404(Recipe, id=id)
 
+    if request.method == "POST":
+        recipe.delete()
+        return redirect('recipe_list')
+
+    context = {
+        'recipe': recipe,
+    }
+
+    return render(request, 'recipes/delete.html', context)
+
+@login_required
+def edit_recipe(request, id):
+    post = get_object_or_404(Recipe, id=id)
+    if request.method == "POST":
+        form = RecipeForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect("show_recipe", id=id)
+    else:
+        form = RecipeForm(instance=post)
+    context = {
+        "recipe_object": post,
+        "recipe_form": form
+    }
+
+    return render(request, "recipes/edit.html", context)
+
+@login_required
 def show_playlist_recipes(request, playlist_id):
     playlist = Playlist.objects.get(id=playlist_id)
     recipes = playlist.recipes.all()
@@ -52,6 +83,7 @@ def show_playlist(request, id):
     }
     return render(request, 'recipes/playlist_detail.html', context)
 
+@login_required
 def show_recipe(request, id):
     recipe = get_object_or_404(Recipe, id=id)
     context = {
