@@ -4,6 +4,17 @@ from django.contrib.auth.decorators import login_required
 from .forms import RecipeForm, PlaylistForm
 from django.contrib.auth.models import User
 
+
+def show_playlist_recipes(request, playlist_id):
+    playlist = Playlist.objects.get(id=playlist_id)
+    recipes = playlist.recipes.all()
+
+    context = {
+        'playlist': playlist,
+        'recipes': recipes,
+    }
+    return render(request, 'recipes/playlist_recipes.html', context)
+
 @login_required
 def create_playlist(request):
     if request.method == "POST":
@@ -33,6 +44,7 @@ def playlist_list(request):
     }
     return render(request, 'recipes/playlist_list.html', context)
 
+@login_required
 def show_playlist(request, id):
     playlist = get_object_or_404(Playlist, id=id)
     context = {

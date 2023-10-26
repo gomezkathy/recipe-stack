@@ -1,5 +1,5 @@
 from django.urls import path
-from recipes.views import show_recipe, recipe_list, create_recipe, create_playlist, playlist_list, show_playlist
+from recipes.views import show_recipe, recipe_list, create_recipe, create_playlist, playlist_list, show_playlist, show_playlist_recipes
 
 urlpatterns = [
     path('recipes/<int:id>/', show_recipe, name='show_recipe'),
@@ -8,4 +8,5 @@ urlpatterns = [
     path('recipes/create_playlist/', create_playlist, name='create_playlist'),
     path('recipes/playlists/', playlist_list, name='playlist_list'),
     path('recipes/playlists/<int:id>/', show_playlist, name='show_playlist'),
+    path('recipes/playlists/<int:playlist_id>/recipes/', show_playlist_recipes, name='show_playlist_recipes'),
 ]

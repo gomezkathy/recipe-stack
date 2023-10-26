@@ -18,20 +18,18 @@
     </nav>
   </header>
   <main>
-    <h1> Welcome back, {{user.username }}!</h1>
-    <h2>
-      <a href="{%url 'recipe_list' %}">All Recipes |</a>
-      <a href="{% url 'playlist_list' %}"> RecipeStacks</a>
-    </h2>
     <div class="recipe-grid">
-        {% for playlist in playlist_list %}
+        <h1>{{ playlist.title }}</h1>
+        {% for recipe in recipes %}
         <div>
           <h3>
-            <a href="{% url 'show_playlist_recipes' playlist.id %}">{{ playlist.title }}</a>
-            <p>{{ playlist.created_on|date:"d M Y" }}</p>
+            <a href="{% url 'show_recipe' recipe.id %}">{{ recipe.title }}</a>
+            <p>Created on: {{ recipe.created_on|date:"d M Y" }}</p>
           </h3>
-          <img src="{{ playlist.picture }}">
+          <img src="{{ recipe.picture }}">
         </div>
+        {% empty %}
+          <p>No recipes in this playlist yet.</p>
         {% endfor %}
       </div>
   </main>
