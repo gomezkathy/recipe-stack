@@ -16,6 +16,7 @@ class Recipe(models.Model):
         formatted_date = self.created_on.strftime("%d %b %Y")
         return f"{self.title} - ({formatted_date})"
 
+
 class Playlist(models.Model):
     title = models.CharField(max_length=250)
     picture = models.URLField()

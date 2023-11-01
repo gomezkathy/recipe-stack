@@ -4,6 +4,7 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: white;
 }
 main{
     flex: 1;
@@ -13,7 +14,7 @@ main{
 
 footer {
     padding: 20px;
-    background: linear-gradient(120deg, #007bff, #d0314c)
+    background: linear-gradient(120deg, #9887d7, #cb78ae, rgb(145, 129, 247), #cb78ae, #9887d7);
 }
 
 img {
@@ -21,11 +22,8 @@ img {
 }
 
 nav {
-    border-width: 0 0 1px;
-    border-style: solid;
-    border-color: black;
     padding: 30px;
-    background: linear-gradient(120deg, #007bff, #d0314c);
+    background: linear-gradient(120deg, #9887d7, #cb78ae, rgb(145, 129, 247), #cb78ae, #9887d7);
     justify-content: space-between;
 }
 
