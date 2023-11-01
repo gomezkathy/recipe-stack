@@ -2,28 +2,51 @@
 <!doctype html>
 <html>
     <head>
-        <title>Edit Recipe</title>
+        <title>Create Recipe</title>
         <link rel="stylesheet" href="{% static 'css/recipes.css' %}">
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+
+            main {
+                flex: 1;
+                padding: 16px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            form button {
+                display: block;
+                margin: 0 auto;
+            }
+        </style>
     </head>
     <body>
         <header>
             <nav>
-                <nav>
-                    <a href="{% url 'recipe_list' %}">Home</a>
-                    <a href="{% url 'create_recipe' %}">Create Recipe</a>
-                    <a href="{% url 'create_playlist' %}">Create Stack</a>
-                    <a href="{% url 'user_login' %}">Logout</a>
-                </nav>
+                <a href="{% url 'recipe_list' %}">Home</a>
+                <a href="{% url 'create_recipe' %}">Create Recipe</a>
+                <a href="{% url 'create_playlist' %}">Create Stack</a>
+                <a href="{% url 'user_login' %}">Logout</a>
             </nav>
         </header>
         <main>
+            <h1>Edit Recipe</h1>
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
                 {{ recipe_form.as_p }}
-                <button>EDIT</button>
+
+                <button>UPDATE</button>
             </form>
         </main>
-        <footer>Made with love by Scrumptious Recipes</footer>
+        <footer>Made with love by RecipeStack</footer>
     </body>
 </html>
