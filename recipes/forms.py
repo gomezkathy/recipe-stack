@@ -9,6 +9,7 @@ class RecipeForm(ModelForm):
             'title',
             'picture',
             'description',
+            'instructions',
         ]
 
 class PlaylistForm(ModelForm):
