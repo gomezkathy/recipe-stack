@@ -20,8 +20,13 @@ class PlaylistForm(ModelForm):
     class Meta:
         model = Playlist
         fields = ['title', 'picture', 'recipes']
+        labels = {
+            'title': 'Enter Title',
+            'picture': 'Picture Url',
+        }
 
     recipes = forms.ModelMultipleChoiceField(
         queryset=Recipe.objects.all(),
         widget=forms.CheckboxSelectMultiple,
+        label='Select From Your Recipes Below',
     )
