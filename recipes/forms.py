@@ -11,6 +11,10 @@ class RecipeForm(ModelForm):
             'description',
             'instructions',
         ]
+        labels = {
+            'title': 'Enter Title',
+            'picture': 'Picture Url',
+        }
 
 class PlaylistForm(ModelForm):
     class Meta:
