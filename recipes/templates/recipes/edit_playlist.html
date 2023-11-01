@@ -1,26 +1,52 @@
 {% load static %}
 <!doctype html>
 <html>
-<head>
-    <title>Edit Playlist</title>
-    <link rel="stylesheet" href="{% static 'css/recipes.css' %}">
-</head>
-<body>
-    <header>
-        <nav>
-            <a href="{% url 'recipe_list' %}">Home</a>
-            <a href="{% url 'create_recipe' %}">Create Recipe</a>
-            <a href="{% url 'create_playlist' %}">Create Stack</a>
-            <a href="{% url 'user_login' %}">Logout</a>
-        </nav>
-    </header>
-    <main>
-        <form method="post">
-            {% csrf_token %}
-            {{ playlist_form.as_p }}
-            <button>EDIT</button>
-        </form>
-    </main>
-    <footer>Made with love by Scrumptious Recipes</footer>
-</body>
+    <head>
+        <title>Create Stack</title>
+        <link rel="stylesheet" href="{% static 'css/recipes.css' %}">
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+
+            main {
+                flex: 1;
+                padding: 16px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+            }
+
+            form button {
+                display: block;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="{% url 'recipe_list' %}">Home</a>
+                <a href="{% url 'create_recipe' %}">Create Recipe</a>
+                <a href="{% url 'create_playlist' %}">Create Stack</a>
+                <a href="{% url 'user_login' %}">Logout</a>
+            </nav>
+        </header>
+        <main>
+            <div style="text-align: center;">
+                <h1>Edit RecipeStack</h1>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ playlist_form.as_p }}
+                    <button>EDIT</button>
+                </form>
+            </div>
+        </main>
+        <footer>Made with love by RecipeStack</footer>
+    </body>
 </html>
