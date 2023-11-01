@@ -18,8 +18,8 @@
         <h1>{{ recipe_object.title }}</h1>
         <img src="{{ recipe_object.picture }}" alt="Recipe Image">
         <p>
-        <a href="{% url 'edit_recipe' recipe_object.id %}">Edit Recipe</a>
-        <a href="{% url 'delete_recipe' recipe_object.id %}" class="delete-link">Delete Recipe</a>
+        <a href="{% url 'edit_recipe' recipe_object.id %}">Edit |</a>
+        <a href="{% url 'delete_recipe' recipe_object.id %}" class="delete-link">Delete </a>
         </p>
         <h2>Description</h2>
         <p>{{ recipe_object.description }}</p>
