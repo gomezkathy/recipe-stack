@@ -30,9 +30,9 @@
         <div>
           <h3>
             <a href="{% url 'show_recipe' recipe.id %}">{{ recipe.title }}</a>
-            <p>{{ recipe.created_on|date:"d M Y" }}</p>
           </h3>
           <img src="{{ recipe.picture }}">
+          <h4>{{ recipe.created_on|date:"d M Y" }}</h4>
         </div>
         {% endfor %}
       </div>
