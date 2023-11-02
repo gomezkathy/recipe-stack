@@ -42,6 +42,7 @@
                 <h1>Edit RecipeStack</h1>
                 <form method="post">
                     {% csrf_token %}
+                    {{ form.as_p }}
                     {{ playlist_form.as_p }}
                     <button>EDIT</button>
                 </form>

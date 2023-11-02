@@ -4,6 +4,38 @@
 <head>
     <title>{{ recipe_object.title }} - Scrumptious Recipes</title>
     <link rel="stylesheet" href="{% static 'css/recipes.css' %}">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main {
+            text-align: center;
+            margin-top: -30px;
+        }
+
+        main p.instructions {
+            display: flex;
+            justify-content: center;
+            text-align: left;
+        }
+
+        footer {
+            padding: 20px;
+
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -14,18 +46,20 @@
             <a href="{% url 'user_login' %}">Logout</a>
         </nav>
     </header>
-    <main>
-        <h1>{{ recipe_object.title }}</h1>
-        <img src="{{ recipe_object.picture }}" alt="Recipe Image">
-        <p>
-        <a href="{% url 'edit_recipe' recipe_object.id %}">Edit |</a>
-        <a href="{% url 'delete_recipe' recipe_object.id %}" class="delete-link">Delete </a>
-        </p>
-        <h2>Description</h2>
-        <p>{{ recipe_object.description }}</p>
-        <h3>Instructions</h3>
-        <p>{{ recipe_object.instructions }}</p>
-    </main>
+    <div class="container">
+        <main>
+            <h1>{{ recipe_object.title }}</h1>
+            <img src="{{ recipe_object.picture }}" alt="Recipe Image">
+            <p>
+                <a href="{% url 'edit_recipe' recipe_object.id %}">Edit |</a>
+                <a href="{% url 'delete_recipe' recipe_object.id %}" class="delete-link">Delete</a>
+            </p>
+            <h2>Description</h2>
+            <p>{{ recipe_object.description|linebreaksbr }}</p>
+            <h3>Instructions</h3>
+            <p class="instructions">{{ recipe_object.instructions|linebreaksbr }}</p>
+        </main>
+    </div>
     <footer>Made with love by RecipeStack</footer>
 </body>
 </html>

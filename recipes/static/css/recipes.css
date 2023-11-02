@@ -4,7 +4,7 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: white;
+
 }
 main{
     flex: 1;
@@ -39,6 +39,7 @@ h1{
 h3{
     color: rgb(4, 6, 2);
 }
+
 
 div{
     display: inline-block;
