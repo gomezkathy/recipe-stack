@@ -26,11 +26,11 @@ def edit_playlist(request, playlist_id):
         form = PlaylistForm(request.POST, instance=playlist)
         if form.is_valid():
             form.save()
-            return redirect("show_playlist_recipes", playlist_id=playlist.id)  # Use 'playlist_id' as the keyword argument
-
+            return redirect("show_playlist_recipes", playlist_id=playlist.id)
     else:
         form = PlaylistForm(instance=playlist)
-        form.fields['recipes'].queryset = Recipe.objects.filter(created_by=request.user)
+
+    form.fields['recipes'].queryset = Recipe.objects.filter(created_by=request.user)
 
     context = {
         "playlist_object": playlist,
@@ -38,6 +38,7 @@ def edit_playlist(request, playlist_id):
     }
 
     return render(request, "recipes/edit_playlist.html", context)
+
 
 @login_required
 def delete_recipe(request, id):
